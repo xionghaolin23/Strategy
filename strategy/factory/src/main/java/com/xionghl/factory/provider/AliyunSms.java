@@ -1,21 +1,23 @@
 package com.xionghl.factory.provider;
 
-import com.aliyun.dysmsapi20170525.models.QuerySendDetailsRequest;
 import com.aliyun.dysmsapi20170525.models.SendSmsRequest;
 import com.aliyun.dysmsapi20170525.models.SendSmsResponse;
 import com.aliyun.dysmsapi20170525.models.SendSmsResponseBody;
 import com.aliyun.teaopenapi.models.Config;
 import com.xionghl.factory.handle.SmsHander;
+import org.springframework.stereotype.Component;
 
 /**
  * @Author:xionghl
  * @Date:2021/8/15 12:02 下午
  * 阿里云短信厂商
  */
+@Component
 public class AliyunSms implements SmsHander {
 
     /**
      * 使用AK&SK初始化账号Client
+     *
      * @param accessKeyId
      * @param accessKeySecret
      * @return Client
@@ -33,12 +35,12 @@ public class AliyunSms implements SmsHander {
     }
 
     @Override
-    public  String  sendSms(String mobile) {
+    public String sendSms(String mobile) {
         com.aliyun.dysmsapi20170525.Client client = null;
         try {
             client = AliyunSms.createClient("", "");
             SendSmsRequest sendSmsRequest = new SendSmsRequest()
-                     //手机号码
+                    //手机号码
                     .setPhoneNumbers("")
                     //签名
                     .setSignName("")

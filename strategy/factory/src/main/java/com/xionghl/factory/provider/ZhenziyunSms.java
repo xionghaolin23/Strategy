@@ -14,7 +14,6 @@ import java.util.Random;
  * @Date:2021/8/15 11:22 上午
  * 榛子云短信厂商
  */
-@Component
 public class ZhenziyunSms implements SmsHander {
 
 
@@ -27,7 +26,7 @@ public class ZhenziyunSms implements SmsHander {
      * @param mobile 手机号码
      */
     @Override
-    public String sendSms(String mobile)  {
+    public String sendSms(String mobile) {
 
         ZhenziSmsClient client = new ZhenziSmsClient(API_URL, APP_ID, APP_SECRET);
         Map<String, Object> params = new HashMap();
