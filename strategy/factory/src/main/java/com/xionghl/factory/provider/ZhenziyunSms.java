@@ -1,5 +1,6 @@
 package com.xionghl.factory.provider;
 
+import com.xionghl.factory.handle.SmsHander;
 import com.zhenzi.sms.ZhenziSmsClient;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import java.util.Random;
  * 榛子云短信厂商
  */
 @Component
-public class ZhenziyunSms {
+public class ZhenziyunSms implements SmsHander {
 
 
     //短信平台相关参数
@@ -25,6 +26,7 @@ public class ZhenziyunSms {
     /**
      * @param mobile 手机号码
      */
+    @Override
     public String sendSms(String mobile)  {
 
         ZhenziSmsClient client = new ZhenziSmsClient(API_URL, APP_ID, APP_SECRET);

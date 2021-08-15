@@ -5,13 +5,14 @@ import com.aliyun.dysmsapi20170525.models.SendSmsRequest;
 import com.aliyun.dysmsapi20170525.models.SendSmsResponse;
 import com.aliyun.dysmsapi20170525.models.SendSmsResponseBody;
 import com.aliyun.teaopenapi.models.Config;
+import com.xionghl.factory.handle.SmsHander;
 
 /**
  * @Author:xionghl
  * @Date:2021/8/15 12:02 下午
  * 阿里云短信厂商
  */
-public class AliyunSms {
+public class AliyunSms implements SmsHander {
 
     /**
      * 使用AK&SK初始化账号Client
@@ -31,14 +32,19 @@ public class AliyunSms {
         return new com.aliyun.dysmsapi20170525.Client(config);
     }
 
+    @Override
     public  String  sendSms(String mobile) {
         com.aliyun.dysmsapi20170525.Client client = null;
         try {
-            client = AliyunSms.createClient("LTAI4GATuhzrjPzfYFT1SoGF", "JhcNujTZj5EG3PpoZEdy7fc3aA43rj");
+            client = AliyunSms.createClient("", "");
             SendSmsRequest sendSmsRequest = new SendSmsRequest()
-                    .setPhoneNumbers("15676374033")
-                    .setSignName("bitlive")
-                    .setTemplateCode("SMS_200712059")
+                     //手机号码
+                    .setPhoneNumbers("")
+                    //签名
+                    .setSignName("")
+                    //短信模版
+                    .setTemplateCode("")
+                    //变量值
                     .setTemplateParam("151515");
             SendSmsResponse sendSmsResponse = client.sendSms(sendSmsRequest);
             SendSmsResponseBody body = sendSmsResponse.getBody();
