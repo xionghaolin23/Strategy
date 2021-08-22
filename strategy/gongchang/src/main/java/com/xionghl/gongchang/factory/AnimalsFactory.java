@@ -32,7 +32,7 @@ public class AnimalsFactory {
         return null;
     }
 
-    /**  第二种方式  通过反射获取（Spring Aop的原理就是如此）
+    /**  第二种方式  通过反射获取（Spring Aop的原理就是如此（工厂+反射））
       *  @param clazz  动物实体类型
       *  @return  动物实体对象
      */
@@ -52,7 +52,7 @@ public class AnimalsFactory {
         //第一种方式获取动物实体 工厂设计模式
         Animals bean = AnimalsFactory.getBean("Bunny");
         log.warn("所获的Animals的子类为：{}",bean);
-        //第二种方式  通过反射获取（Spring Aop的原理就是如此）
+        //第二种方式  通过反射获取（Spring Aop的原理就是如此（工厂+反射））
         Animals bean2 = AnimalsFactory.getBean2(Bunny.class);
         log.warn("所获的Animals的子类为：{}",bean2);
     }
