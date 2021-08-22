@@ -29,7 +29,7 @@ public class SendSmsController {
      */
     @RequestMapping("sendSms")
     public String sendSms(@RequestBody SmsParam smsParam) {
-        //或许对应短信厂商的实现
+        //获取对应短信厂商的实现
         SmsHander smsHander = beanConfig.createSmsService(smsParam.getCompany());
         log.warn("短信厂商{}", smsHander);
         return smsHander.sendSms(smsParam.getMobile());

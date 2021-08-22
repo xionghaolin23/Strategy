@@ -32,7 +32,8 @@ public class BeanConfig implements InitializingBean, ApplicationContextAware {
 
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
+        //获取SmsHander 接口所有的实现类
         Map<String, SmsHander> beanMap = applicationContext.getBeansOfType(SmsHander.class);
         //遍历该接口的所有实现，将其放入map中
         for (SmsHander serviceImpl : beanMap.values()) {
