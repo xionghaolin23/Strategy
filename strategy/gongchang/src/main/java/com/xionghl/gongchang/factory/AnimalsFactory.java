@@ -14,22 +14,30 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AnimalsFactory {
 
+    private  static final String BUNNY = "Bunny";
+    private  static final String MONKEYS = "Monkeys";
+    private  static final String TIGER = "Tiger";
+
     /** 第一种方式 简单工厂设计模式 通过一个标识生产对象的对象
      * @param animalType  动物类型
      * @return  动物实体对象
      */
     public static Animals getBean(String animalType) {
+
         if (animalType == null) {
             return null;
         }
-        if (animalType.equalsIgnoreCase("Bunny")) {
-            return new Bunny();
-        } else if (animalType.equalsIgnoreCase("Monkeys")) {
-            return new Monkeys();
-        } else if (animalType.equalsIgnoreCase("Tiger")) {
-            return new Tiger();
+        switch (animalType) {
+            case BUNNY:
+                return new Bunny();
+            case MONKEYS:
+                return new Monkeys();
+            case TIGER:
+                return new Tiger();
+            default:
+                return null;
         }
-        return null;
+
     }
 
     /**  第二种方式  通过反射获取（Spring Aop的原理就是如此（工厂+反射））
@@ -38,8 +46,7 @@ public class AnimalsFactory {
      */
     public static Animals getBean2(Class clazz) {
         try {
-            Animals bean =(Animals) clazz.newInstance();
-            return bean;
+            return (Animals) clazz.newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
